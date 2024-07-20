@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'gg' // Remplacez 'gg' par le nom que vous avez donné à votre installation de Maven dans Jenkins
+        maven 'Maven3'
     }
 
     stages {
@@ -12,27 +12,24 @@ pipeline {
             }
         }
         
-        stage('Compile') {
-            steps {
-                sh 'mvn compile'
-            }
-        }
-        
         stage('Build') {
             steps {
-                sh 'echo "Building..."'
+                sh 'mvn clean package'
             }
         }
-        
-        stage('Test') {
+
+        stage('Archive') {
             steps {
-                sh 'echo "Testing..."'
+                archiveArtifacts artifacts: 'target/*.war', allowEmptyArchive: true
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'echo "Deploying..."'
+                // Exemple de déploiement sur Tomcat
+                sh '''
+                cp target/*.war /path/to/tomcat/webapps/
+                '''
             }
         }
     }
