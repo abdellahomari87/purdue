@@ -4,28 +4,30 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from Git
-                git credentialsId: 'your-credentials-id', url: 'https://github.com/abdellahomari87/purdue.git', branch: 'master'
+                git credentialsId: 'your-credentials-id', url: 'https://github.com/abdellahomari87/cc.git', branch: 'master'
+            }
+        }
+        
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
             }
         }
         
         stage('Build') {
             steps {
-                // Add your build steps here
                 sh 'echo "Building..."'
             }
         }
         
         stage('Test') {
             steps {
-                // Add your test steps here
                 sh 'echo "Testing..."'
             }
         }
         
         stage('Deploy') {
             steps {
-                // Add your deploy steps here
                 sh 'echo "Deploying..."'
             }
         }
