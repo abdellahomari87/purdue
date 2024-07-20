@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'gg' // Remplacez 'gg' par le nom que vous avez donné à votre installation de Maven dans Jenkins
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -20,6 +24,20 @@ pipeline {
             }
         }
         
+        stage('Test') {
+            steps {
+                sh 'echo "Testing..."'
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                sh 'echo "Deploying..."'
+            }
+        }
+    }
+}
+
         stage('Test') {
             steps {
                 sh 'echo "Testing..."'
