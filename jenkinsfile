@@ -28,7 +28,7 @@ pipeline {
             steps {
                 // Exemple de déploiement sur Tomcat
                 sh '''
-                cp target/*.war /path/to/docker/webapps/
+                cp target/*.war /path/to/tomcat/webapps/
                 '''
             }
         }
